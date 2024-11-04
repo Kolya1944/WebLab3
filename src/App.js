@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import ProductList from './ProductList';
+import ProductDetails from './ProductDetails';
+import CurrencyConverter from './CurrencyConverter';
 
 function App() {
+  const products = [
+    { id: 1, name: 'Телефон', price: 11500 },
+    { id: 2, name: 'Навушники', price: 1500 },
+    { id: 3, name: 'Ноутбук', price: 22500 },
+  ];
+  const product = products[0];
+  const [exchangeRate] = useState(41.22);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Список товарів</h1>
+      <ProductList products={products} />
+      <ProductDetails product={product} />
+      <CurrencyConverter price={product.price} exchangeRate={exchangeRate} />
     </div>
   );
 }
